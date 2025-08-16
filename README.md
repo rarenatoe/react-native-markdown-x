@@ -91,11 +91,16 @@ All standard CommonMark elements are supported with native React Native renderin
 
 | Feature | iOS | Android |
 |---------|-----|---------|
-| __Headings__ | <img src="https://github.com/rarenatoe/react-native-markdown-x/raw/master/doc/images/ios-1.png" alt="iOS headings" width="200"/> | <img src="https://github.com/rarenatoe/react-native-markdown-x/raw/master/doc/images/android-1.png" alt="Android headings" width="200"/> |
-| __Emphasis__ | <img src="https://github.com/rarenatoe/react-native-markdown-x/raw/master/doc/images/ios-4.png" alt="iOS emphasis" width="200"/> | <img src="https://github.com/rarenatoe/react-native-markdown-x/raw/master/doc/images/android-4.png" alt="Android emphasis" width="200"/> |
-| __Lists__ | <img src="https://github.com/rarenatoe/react-native-markdown-x/raw/master/doc/images/ios-6.png" alt="iOS lists" width="200"/> | <img src="https://github.com/rarenatoe/react-native-markdown-x/raw/master/doc/images/android-6.png" alt="Android lists" width="200"/> |
-| __Code__ | <img src="https://github.com/rarenatoe/react-native-markdown-x/raw/master/doc/images/ios-7.png" alt="iOS code" width="200"/> | <img src="https://github.com/rarenatoe/react-native-markdown-x/raw/master/doc/images/android-7.png" alt="Android code" width="200"/> |
-| __Tables__ | <img src="https://github.com/rarenatoe/react-native-markdown-x/raw/master/doc/images/ios-8.png" alt="iOS tables" width="200"/> | <img src="https://github.com/rarenatoe/react-native-markdown-x/raw/master/doc/images/android-8.png" alt="Android tables" width="200"/> |
+| __Headings__ | <img src="https://github.com/rarenatoe/react-native-markdown-x/tree/main/doc/images/ios-1.png" alt="iOS Headings" width="200"/> | <img src="https://github.com/rarenatoe/react-native-markdown-x/tree/main/doc/images/android-1.png" alt="Android Headings" width="200"/> |
+| __Emphasis__ | <img src="https://github.com/rarenatoe/react-native-markdown-x/tree/main/doc/images/ios-4.png" alt="iOS Emphasis" width="200"/> | <img src="https://github.com/rarenatoe/react-native-markdown-x/tree/main/doc/images/android-4.png" alt="Android Emphasis" width="200"/> |
+| __Lists__ | <img src="https://github.com/rarenatoe/react-native-markdown-x/tree/main/doc/images/ios-6.png" alt="iOS Lists" width="200"/> | <img src="https://github.com/rarenatoe/react-native-markdown-x/tree/main/doc/images/android-6.png" alt="Android Lists" width="200"/> |
+| __Links__ | <img src="https://github.com/rarenatoe/react-native-markdown-x/tree/main/doc/images/ios-9.png" alt="iOS Links" width="200"/> | <img src="https://github.com/rarenatoe/react-native-markdown-x/tree/main/doc/images/android-9.png" alt="Android Links" width="200"/> |
+| __Images__ | <img src="https://github.com/rarenatoe/react-native-markdown-x/tree/main/doc/images/ios-10.png" alt="iOS Images" width="200"/> | <img src="https://github.com/rarenatoe/react-native-markdown-x/tree/main/doc/images/android-10.png" alt="Android Images" width="200"/> |
+| __Code__ | <img src="https://github.com/rarenatoe/react-native-markdown-x/tree/main/doc/images/ios-7.png" alt="iOS Code" width="200"/> | <img src="https://github.com/rarenatoe/react-native-markdown-x/tree/main/doc/images/android-7.png" alt="Android Code" width="200"/> |
+| __Tables__ | <img src="https://github.com/rarenatoe/react-native-markdown-x/tree/main/doc/images/ios-8.png" alt="iOS Tables" width="200"/> | <img src="https://github.com/rarenatoe/react-native-markdown-x/tree/main/doc/images/android-8.png" alt="Android Tables" width="200"/> |
+| __Blockquotes__ | <img src="https://github.com/rarenatoe/react-native-markdown-x/tree/main/doc/images/ios-5.png" alt="iOS Blockquotes" width="200"/> | <img src="https://github.com/rarenatoe/react-native-markdown-x/tree/main/doc/images/android-5.png" alt="Android Blockquotes" width="200"/> |
+| __Horizontal Rules__ | <img src="https://github.com/rarenatoe/react-native-markdown-x/tree/main/doc/images/ios-2.png" alt="iOS Horizontal Rules" width="200"/> | <img src="https://github.com/rarenatoe/react-native-markdown-x/tree/main/doc/images/android-2.png" alt="Android Horizontal Rules" width="200"/> |
+| __Typographic Replacements__ | <img src="https://github.com/rarenatoe/react-native-markdown-x/tree/main/doc/images/ios-3.png" alt="iOS Typographic Replacements" width="200"/> | <img src="https://github.com/rarenatoe/react-native-markdown-x/tree/main/doc/images/android-3.png" alt="Android Typographic Replacements" width="200"/> |
 
 </details>
 
@@ -214,6 +219,7 @@ Tables
   | ------:| -----------:|
   | data   | path to data files to supply the data that will be passed into templates. |
   | engine | engine to be used for processing templates. Handlebars is the default. |
+  | __Headings__ <br/> <pre>
   | ext    | extension to be used for dest files. |
 
 
@@ -224,7 +230,6 @@ Links
   [link with title](https://www.google.com "title text!")
 
   Autoconverted link https://www.google.com (enable linkify to see)
-
 
 Images
 
