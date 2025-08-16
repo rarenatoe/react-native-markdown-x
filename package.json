@@ -4,19 +4,11 @@
   "description": "TypeScript-first React Native markdown renderer with CommonMark compliance, native component rendering, and enhanced default features.",
   "packageManager": "yarn@4.9.2",
   "main": "./lib/module/index.js",
-  "module": "./lib/module/index.js",
-  "types": "./index.d.ts",
+  "types": "./lib/typescript/src/index.d.ts",
   "exports": {
     ".": {
       "source": "./src/index.ts",
-      "import": {
-        "types": "./index.d.ts",
-        "default": "./lib/module/index.js"
-      },
-      "require": {
-        "types": "./index.d.ts",
-        "default": "./lib/module/index.js"
-      },
+      "types": "./lib/typescript/src/index.d.ts",
       "default": "./lib/module/index.js"
     },
     "./package.json": "./package.json"
@@ -28,13 +20,12 @@
     "doc": "doc"
   },
   "files": [
+    "src",
     "lib",
-    "index.d.ts",
     "!**/__tests__",
     "!**/__fixtures__",
     "!**/__mocks__",
-    "!**/.*",
-    "!**/*.map"
+    "!**/.*"
   ],
   "keywords": [
     "react",
@@ -132,7 +123,12 @@
     "source": "src",
     "output": "lib",
     "targets": [
-      "module",
+      [
+        "module",
+        {
+          "esm": true
+        }
+      ],
       [
         "typescript",
         {

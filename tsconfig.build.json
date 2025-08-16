@@ -1,9 +1,4 @@
 {
   "extends": "./tsconfig",
-  "compilerOptions": {
-    "declaration": true,
-    "declarationMap": true,
-    "emitDeclarationOnly": true
-  },
   "exclude": ["example", "lib", "**/__tests__", "**/*.test.*"]
 }

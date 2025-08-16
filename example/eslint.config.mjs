@@ -50,7 +50,7 @@ export default tseslint.config(
       parser: typescriptParser,
       parserOptions: {
         projectService: true,
-        tsconfigRootDir: import.meta.dirname,
+        project: true,
       },
     },
   }
