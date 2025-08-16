@@ -1,4 +1,4 @@
-export { default } from "./components/Markdown";
+export { default as Markdown } from "./components/Markdown";
 export { default as parser } from "./lib/parser";
 export { default as AstRenderer } from "./lib/AstRenderer";
 export {

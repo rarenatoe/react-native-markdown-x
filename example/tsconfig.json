@@ -1,6 +1,11 @@
 {
   "extends": "@react-native/typescript-config",
+  "compilerOptions": {
+    "noEmit": true,
+    "paths": {
+      "react-native-markdown-x": ["../src/index"]
+    }
+  },
   "include": ["**/*.ts", "**/*.tsx"],
-  "exclude": ["**/node_modules", "**/Pods"],
-  "references": [{ "path": ".." }]
+  "exclude": ["**/node_modules", "**/Pods"]
 }
