@@ -1,6 +1,6 @@
 {
   "name": "react-native-markdown-x",
-  "version": "0.2.3",
+  "version": "0.2.4",
   "description": "TypeScript-first React Native markdown renderer with CommonMark compliance, native component rendering, and enhanced default features.",
   "packageManager": "yarn@4.9.2",
   "main": "./lib/module/index.js",
