@@ -20,12 +20,12 @@
     "doc": "doc"
   },
   "files": [
-    "src",
     "lib",
     "!**/__tests__",
     "!**/__fixtures__",
     "!**/__mocks__",
-    "!**/.*"
+    "!**/.*",
+    "!**/*.map"
   ],
   "keywords": [
     "react",
@@ -123,12 +123,7 @@
     "source": "src",
     "output": "lib",
     "targets": [
-      [
-        "module",
-        {
-          "esm": true
-        }
-      ],
+      "module",
       [
         "typescript",
         {
