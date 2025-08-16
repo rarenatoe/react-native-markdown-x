@@ -44,7 +44,7 @@
     "lint": "eslint \"**/*.{js,ts,tsx}\"",
     "clean": "del-cli lib",
     "prepare": "bob build",
-    "release": "release-it --only-version"
+    "release": "release-it"
   },
   "dependencies": {
     "css-to-react-native": "^3.2.0",
