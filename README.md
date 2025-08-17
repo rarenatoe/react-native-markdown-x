@@ -8,6 +8,7 @@ THE definitive CommonMark renderer for React Native. Built with TypeScript, usin
 - __Native Components__: No WebView - renders using React Native components
 - __Fully Customizable__: Override any render function or style
 - __Better Architecture__: Clean AstRenderer class with proper fallbacks
+- __Standardized API__: All render functions use consistent props interface
 - __Modern Performance__: Optimized for React Native applications
 
 ## Install
@@ -297,17 +298,17 @@ __Note__: The `text` style doesn't apply to all text (e.g., list markers). Use `
 
 ### Render Functions
 
-Override how elements are rendered using the `renderFunctions` prop. Like styles, these are merged with defaults by default:
+Override how elements are rendered using the `renderFunctions` prop. All render functions have a __standardized interface__ with consistent props and return types. Like styles, these are merged with defaults by default:
 
 ```tsx
 // Merged with defaults (useDefaultRenderFunctions: true - default behavior)
 const customRenders = {
-  heading1: (node, children, parent, styles) => (
+  heading1: ({ node, children, styles, Text }) => (
     <Text key={node.key} style={[styles.heading1, { borderLeftWidth: 4, borderLeftColor: 'blue' }]}>
       📝 {children}
     </Text>
   ),
-  strong: (node, children, parent, styles) => (
+  strong: ({ node, children, styles, Text }) => (
     <Text key={node.key} style={[styles.strong, { color: 'red' }]}>
       {children}
     </Text>
@@ -319,7 +320,7 @@ const customRenders = {
 // Complete override (useDefaultRenderFunctions: false)
 const minimalRenders = {
   body: ({ children }) => <View>{children}</View>,
-  heading1: ({ node, children, styles }) => (
+  heading1: ({ node, children, styles, Text }) => (
     <Text key={node.key} style={styles.heading1}>{children}</Text>
   ),
   // Must provide all render functions you need - no defaults
@@ -333,6 +334,31 @@ const minimalRenders = {
 </Markdown>
 ```
 
+#### Standardized Render Function Interface
+
+All render functions receive the same props object with the following signature:
+
+```tsx
+type RenderFunction = (props: {
+  node: AstNode;              // The current AST node
+  children?: ReactNode;       // Rendered child elements
+  parents: AstNode[];         // Parent nodes in the AST tree
+  styles: FlattenedStyleMap;  // All computed styles
+  Text: ComponentType<TextProps>; // Text component (respects textComponent prop)
+  inheritedStyles?: TextOnlyStyle; // Inherited text styles from parents
+  onLinkPress?: (url: string) => void; // Link handler function
+  allowedImageHandlers?: string[];     // Allowed image URL prefixes
+  defaultImageHandler?: string;        // Default image URL prefix
+}) => ReactNode;
+```
+
+This standardized interface means:
+
+- ✅ __Consistent API__: No more different function signatures per element type
+- ✅ __Text Component Access__: The `Text` component is always available as a prop
+- ✅ __Type Safety__: Full TypeScript support with proper prop types
+- ✅ __Future Proof__: New features can be added without breaking changes
+
 > ⚠️ __Important__: When providing both custom `styles` and `renderFunctions` for the same element type, you must ensure your custom render function actually uses the provided style from the `styles` parameter. The style won't be applied automatically!
 >
 > ```tsx
@@ -340,7 +366,7 @@ const minimalRenders = {
 > <Markdown
 >   styles={{ heading1: { color: 'red', fontSize: 24 } }}
 >   renderFunctions={{
->     heading1: ({ node, children }) => <Text key={node.key}>{children}</Text>
+>     heading1: ({ node, children, Text }) => <Text key={node.key}>{children}</Text>
 >   }}
 > >
 >   {content}
@@ -350,7 +376,7 @@ const minimalRenders = {
 > <Markdown
 >   styles={{ heading1: { color: 'red', fontSize: 24 } }}
 >   renderFunctions={{
->     heading1: ({ node, children, styles }) => (
+>     heading1: ({ node, children, styles, Text }) => (
 >       <Text key={node.key} style={styles.heading1}>{children}</Text>
 >     )
 >   }}
@@ -361,7 +387,7 @@ const minimalRenders = {
 > // ✅ Alternative - apply styles directly in the render function
 > <Markdown
 >   renderFunctions={{
->     heading1: ({ node, children }) => (
+>     heading1: ({ node, children, Text }) => (
 >       <Text key={node.key} style={{ color: 'red', fontSize: 24 }}>
 >         {children}
 >       </Text>
@@ -397,7 +423,7 @@ const markdownItInstance = MarkdownIt({typographer: true})
   .use(blockEmbedPlugin, { containerClassName: "video-embed" });
 
 const customRenders = {
-  video: (node, children, parent, styles) => {
+  video: ({ node, children, styles, Text }) => {
     // Access plugin data through node.sourceInfo
     const { videoID, serviceName } = node.sourceInfo;
     return (
@@ -432,7 +458,7 @@ const markdownItInstance = MarkdownIt({typographer: true})
   .use(blockEmbedPlugin, { containerClassName: "video-embed" });
 
 const renderFunctions = {
-  video: (node, children, parent, styles) => {
+  video: ({ node, children, styles, Text }) => {
     console.log(node); // Debug: see available properties
     return (
       <Text key={node.key} style={styles.video}>
@@ -537,13 +563,16 @@ const onLinkPress = (url) => {
 
 ```tsx
 const renderFunctions = {
-  link: (node, children, parent, styles) => (
-    <Text key={node.key} style={styles.link} onPress={() => handleCustomLink(node.attributes.href)}>
+  link: ({ node, children, styles, Text, onLinkPress }) => (
+    <Text 
+      key={node.key} 
+      style={styles.link} 
+      onPress={() => handleCustomLink(node.attributes.href)}
+    >
       {children}
     </Text>
   )
 };
-
 
 <Markdown renderFunctions={renderFunctions}>{content}</Markdown>
 ```
@@ -588,7 +617,7 @@ import { Markdown, AstRenderer, DEFAULT_RENDER_FUNCTIONS, DEFAULT_STYLES } from 
 const customRenderer = new AstRenderer({
   renderFunctions: {
     ...DEFAULT_RENDER_FUNCTIONS,
-    heading1: ({ node, children, styles }) => (
+    heading1: ({ node, children, styles, Text }) => (
       <Text key={node.key} style={[styles.heading1, { color: 'blue' }]}>
         {children}
       </Text>
@@ -650,7 +679,7 @@ const renderer = new AstRenderer({
   renderFunctions: {
     // Only define what you need
     body: ({ children }) => <ScrollView>{children}</ScrollView>,
-    paragraph: ({ children, styles }) => <Text style={styles.paragraph}>{children}</Text>
+    paragraph: ({ children, styles, Text }) => <Text style={styles.paragraph}>{children}</Text>
   },
   styles: {
     paragraph: { marginBottom: 16 }
