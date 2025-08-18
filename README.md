@@ -1,4 +1,4 @@
-# React Native Markdown X [![npm version](https://badge.fury.io/js/react-native-markdown-x.svg)](https://badge.fury.io/js/react-native-markdown-x) [![Known Vulnerabilities](https://snyk.io/test/github/iamacup/react-native-markdown-x/badge.svg)](https://snyk.io/test/github/iamacup/react-native-markdown-x)
+# React Native Markdown X [![npm version](https://badge.fury.io/js/react-native-markdown-x.svg)](https://badge.fury.io/js/react-native-markdown-x) [![Known Vulnerabilities](https://snyk.io/test/github/rarenatoe/react-native-markdown-x/badge.svg)](https://snyk.io/test/github/rarenatoe/react-native-markdown-x)
 
 THE definitive CommonMark renderer for React Native. Built with TypeScript, using native components, fully customizable.
 
